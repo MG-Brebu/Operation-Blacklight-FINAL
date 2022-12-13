@@ -1,0 +1,48 @@
+# Unity Packages Used:
+- ProBuilder
+	* Used as is
+- Cinemachine
+	* Used as is
+
+
+# Third Party Assets Used:
+- "Adventurer Blake" by jmartinezcarrasco00
+	* Changed Asset name to "Player" for Player model
+	* Changed Asset name to "Enemy" for Enemy model
+	* Changed Asset material to custom material for Enemy model
+	* Implemented animations included in Asset
+
+- "Pistol Shot Sound Effect" by GFX Sounds
+https://www.youtube.com/watch?v=_6-rOAe5FtE
+	* Changed name to Gunshot.mp3
+	* Used for player gunshot sound effect
+
+- "Laser Gun Sound Effect" by @Seaguli
+https://www.youtube.com/shorts/FsLkXXOyeRI
+	* Change name to enemyGunshot.mp3
+	* Used for enemy gunshot sound effect
+
+- "Eternal Night" by Karl Casyer | White Bat Audio
+https://youtu.be/WnOjyFYRl9k
+	* Used for main menu background music
+
+- "Future War" by Karl Casyer | White Bat Audio
+https://youtu.be/WnOjyFYRl9k
+	* Used for level 0 background music
+
+- "Menace" by Karl Casyer | White Bat Audio
+https://youtu.be/WnOjyFYRl9k
+	* Used for level 1 background music
+
+- "Spitting Acid" by Karl Casyer | White Bat Audio
+https://youtu.be/WnOjyFYRl9k
+	* Used for level 2 background music
+
+- "Anonymouse" by Karl Casyer | White Bat Audio
+https://youtu.be/WnOjyFYRl9k
+	* Used for level 3 background music
+
+
+
+
+
