@@ -17,6 +17,10 @@ public class EnemyController : MonoBehaviour
     public float rateOfFire;
     private float fireCounter;
     public Transform firePoint;
+    public GameObject firePointObj;
+    public float playerDistance;
+    private AudioSource gunshot;
+    public ParticleSystem shotFX;
 
     // C - Enemy Health Variables
     public int enemyHealth;
@@ -33,6 +37,9 @@ public class EnemyController : MonoBehaviour
         // A - Initialize Interaction Variables
         enemyRB = GetComponent<Rigidbody>();
         player = FindObjectOfType<PlayerController>();
+
+        // B - Initialize Audio Source for Weapon
+        gunshot = firePointObj.GetComponent<AudioSource>();
 
         // C - Initiailize Health Variables
         enemyCurrentHealth = enemyHealth;
@@ -52,13 +59,19 @@ public class EnemyController : MonoBehaviour
             // A - Look at Player
             transform.LookAt(player.transform);
 
-            // B - Fire Projectile at Player
-            fireCounter -= Time.deltaTime;
-            if (fireCounter <= 0)
+            // B - Fire Projectile at Player if Within Range
+            playerDistance = Vector3.Distance(player.transform.position, enemyBody.transform.position);
+            if (playerDistance <= 23)
             {
-                fireCounter = rateOfFire;
-                ProjectileController newProjectile = Instantiate(projectile, firePoint.position, firePoint.rotation);
-                newProjectile.projectileSpeed = projectileSpeed;
+                fireCounter -= Time.deltaTime;
+                if (fireCounter <= 0)
+                {
+                    fireCounter = rateOfFire;
+                    ProjectileController newProjectile = Instantiate(projectile, firePoint.position, firePoint.rotation);
+                    gunshot.Play();
+                    shotFX.Play();
+                    newProjectile.projectileSpeed = projectileSpeed;
+                }
             }
 
             // C - Destroy Enemy if Health <= 0

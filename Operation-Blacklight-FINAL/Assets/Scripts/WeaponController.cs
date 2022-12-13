@@ -11,12 +11,15 @@ public class WeaponController : MonoBehaviour
     public float rateOfFire;
     private float fireCounter;
     public bool fireReady = true;
+    public GameObject firepointObj;
     public Transform firePoint;
+    private AudioSource gunshot;
+    public ParticleSystem shotFX;
 
     // To Handle Initialization
     void Start()
     {
-        
+        gunshot = firepointObj.GetComponent<AudioSource>();
     }
 
     // To Handle non-Frame-Sensitive Operations
@@ -32,6 +35,8 @@ public class WeaponController : MonoBehaviour
                 {
                     fireCounter = rateOfFire;
                     ProjectileController newProjectile = Instantiate(projectile, firePoint.position, firePoint.rotation);
+                    gunshot.Play();
+                    shotFX.Play();
                     newProjectile.projectileSpeed = projectileSpeed;
                     fireReady = false;
                 }

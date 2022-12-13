@@ -17,7 +17,6 @@ public class PlayerController : MonoBehaviour
     public bool gameOver = false;
     public bool gameWin = false;
 
-
     // B - Player Weapon Variables
     public WeaponController weapon;
 
@@ -25,6 +24,9 @@ public class PlayerController : MonoBehaviour
     public int playerHealth;
     public int playerCurrentHealth;
     public GameObject hud;
+    public GameObject dmgOverlay;
+    private float damageAlertTime = 0.1f;
+    private float damageAlertCounter;
 
     // D - Player Animation Variables
     public Animator animator;
@@ -90,6 +92,16 @@ public class PlayerController : MonoBehaviour
             animator.SetBool("Right", Input.GetKey(KeyCode.D));
             animator.SetBool("Shoot", Input.GetMouseButton(0));
         }
+
+        // C - Handle Damage Vignette when Damaged
+        if (damageAlertCounter > 0)
+        {
+            damageAlertCounter -= Time.deltaTime;
+            if (damageAlertCounter <= 0)
+            {
+                dmgOverlay.SetActive(false);
+            }
+        }
     }
 
     // To Handle Frame-Sensitive Operations
@@ -107,6 +119,8 @@ public class PlayerController : MonoBehaviour
     public void DamagePlayer(int damage)
     {
         playerCurrentHealth -= damage;
+        dmgOverlay.SetActive(true);
+        damageAlertCounter = damageAlertTime;
         hud.GetComponent<HUDController>().changeHealth(playerCurrentHealth);
     }
 
